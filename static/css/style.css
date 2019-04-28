@@ -2,7 +2,7 @@
 * Visualizing-Data-with-Leaflet - CSS Style Sheet 
 */
 
-/* remove default margin and padding from body */
+/* Remove Default Margin & Padding From Body */
 body {
   padding: 0;
   margin: 0;
@@ -15,23 +15,22 @@ html {
   height: 100%;
 }
 
+/* Set Legend Style */
 .info {
-  padding: 6px 15px;
-  background: gray;
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 0 15px rgba(0,0,0,0.75);
+  padding: 1px 10px;
+  background: #E5E7E9;
   border-radius: 5px;
 }
 
 .legend {
-  line-height: 18px;
-  color: #500;
+  line-height: 25px;
+  color: #000000;
 }
 
 .legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin-right: 8px;
-  opacity: 0.7;
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-right: 10px;
+  opacity: 0.75;
 }

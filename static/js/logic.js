@@ -123,32 +123,23 @@ d3.json(earthquakesURL, function(earthquakeData) {
         tectonicPlates.addTo(myMap);
     });
 
-//     // Set Up legend
-//     var legend = L.control({ position: "bottomright" });
-//     legend.onAdd = function() {
-//         var div = L.DomUtil.create("div", "info legend");
-//         var magnitudeLevels = [0, 1, 2, 3, 4, 5]
-//         var colors = ["#DAF7A6", "#FFC300", "#FF5733", "#C70039", "#900C3F", "#581845"]
-//         var labels = [];
+    // Set Up legend
+    var legend = L.control({ position: "bottomright" });
+    legend.onAdd = function() {
+        var div = L.DomUtil.create("div", "info legend"), 
+        magnitudeLevels = [0, 1, 2, 3, 4, 5],
+        labels = [];
 
-//         // Add Min & Max
-//         var legendInfo = "<h3>Magnitude</h3>" +
-//             "<div class=\"labels\">" +
-//             "<div class=\"min\">" + magnitudeLevels[0] + "</div>" +
-//             "<div class=\"max\">" + magnitudeLevels[magnitudeLevels.length - 1] + "</div>" +
-//         "</div>";
+        div.innerHTML += "<h3>Magnitude</h3>"
 
-//         div.innerHTML = legendInfo;
-
-//         magnitudeLevels.forEach(function(limit, index) {
-//         labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-//         });
-
-//         div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-//         return div;
-//     };
-
-//   // Add Legend to the Map
-//   legend.addTo(myMap);
+        for (var i = 0; i < magnitudeLevels.length; i++) {
+            div.innerHTML +=
+                '<i style="background: ' + chooseColor(magnitudeLevels[i] + 1) + '"></i> ' +
+                magnitudeLevels[i] + (magnitudeLevels[i + 1] ? '&ndash;' + magnitudeLevels[i + 1] + '<br>' : '+');
+        }
+        return div;
+    };
+    // Add Legend to the Map
+    legend.addTo(myMap);
 
 });
