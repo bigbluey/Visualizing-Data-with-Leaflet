@@ -4,7 +4,7 @@
 var earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 var platesURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 
-// Initialize & Create Two Separate LayerGroups: Earthquakes & Tectonic Plates
+// Initialize & Create Two Separate LayerGroups: earthquakes & tectonicPlates
 var earthquakes = new L.LayerGroup();
 var tectonicPlates = new L.LayerGroup();
 
@@ -43,17 +43,15 @@ var overlayMaps = {
     "Fault Lines": tectonicPlates
 };
 
-// Create Map, Passing In satelliteMap, grayscaleMap & outdoorsMap Layers to Display on Load
+// Create Map, Passing In satelliteMap & earthquakes as Default Layers to Display on Load
 var myMap = L.map("map", {
     center: [37.09, -95.71],
-    zoom: 5,
+    zoom: 2,
     layers: [satelliteMap, earthquakes]
 });
 
 // Create a Layer Control + Pass in baseMaps and overlayMaps + Add the Layer Control to the Map
-L.control.layers(baseMaps, overlayMaps, {
-    collapsed: false
-}).addTo(myMap);
+L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 // Retrieve earthquakesURL (USGS Earthquakes GeoJSON Data) with D3
 d3.json(earthquakesURL, function(earthquakeData) {
@@ -123,12 +121,11 @@ d3.json(earthquakesURL, function(earthquakeData) {
         tectonicPlates.addTo(myMap);
     });
 
-    // Set Up legend
+    // Set Up Legend
     var legend = L.control({ position: "bottomright" });
     legend.onAdd = function() {
         var div = L.DomUtil.create("div", "info legend"), 
-        magnitudeLevels = [0, 1, 2, 3, 4, 5],
-        labels = [];
+        magnitudeLevels = [0, 1, 2, 3, 4, 5];
 
         div.innerHTML += "<h3>Magnitude</h3>"
 
@@ -141,5 +138,4 @@ d3.json(earthquakesURL, function(earthquakeData) {
     };
     // Add Legend to the Map
     legend.addTo(myMap);
-
 });
