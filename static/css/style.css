@@ -2,7 +2,21 @@
 * Visualizing-Data-with-Leaflet - CSS Style Sheet 
 */
 
-#map {
+/* remove default margin and padding from body */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* set map, body, and html to 100% of the screen size */
+#map,
+body,
+html {
+  height: 100%;
+}
+
+
+/* #map {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -34,4 +48,4 @@
   box-sizing: border-box;
   margin: 0;
   margin-bottom: 15px;
-}
+} */
